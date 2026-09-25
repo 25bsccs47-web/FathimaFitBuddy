@@ -6,7 +6,7 @@ st.set_page_config(page_title="FitBuddy AI")
 try:
     API_KEY = st.secrets["GEMINI_API_KEY"]
     genai.configure(api_key=API_KEY)
-    model = genai.GenerativeModel('gemini-2.0-flash')
+    model = genai.GenerativeModel("gemini-1.5-flash")
 except:
     st.error("API Key not found! Add it in Streamlit Secrets.")
     st.stop()

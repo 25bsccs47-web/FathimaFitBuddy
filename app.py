@@ -17,7 +17,9 @@ if st.button("Ask"):
     if question:
         with st.spinner("Thinking..."):
             response = client.models.generate_content(
-                model="gemini-3.5-flash",
+                model="gemini-2.5-flash",
                 contents=question
             )
             st.write(response.text)
+else:
+    st.warning("please enter a question first!")

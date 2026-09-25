@@ -1,20 +1,9 @@
 import streamlit as st
 from google import genai
-
-st.title("Fathima FitBuddy")
-
+st.title("FitBuddy")
 client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
-
-question = st.text_input("Ask your fitness question")
-
+q = st.text_input("Ask something")
 if st.button("Ask"):
-    if question:
-        with st.spinner("Thinking..."):
-            response = client.models.generate_content(
-                model="gemini-2.5-flash",
-                contents=question
-            )
-        st.write(response.text)
-    else:
-        st.warning("Please enter a question")
+ r = client.models.generate_content(model="gemini-2.0-flash", contents=q)
+ st.write(r.text)
 

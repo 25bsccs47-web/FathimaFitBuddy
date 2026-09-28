@@ -22,7 +22,7 @@ if st.button("Generate My Plan"):
     with st.spinner("Generating..."):
         prompt = f"Create Indian diet and workout plan for {age} year old {gender}, {weight}kg, {height}cm, goal {goal}, food {food}"
         response = client.models.generate_content(
-            model="gemini-2.0-flash-lite",
+            model="gemini-2.0-flash",
             contents=prompt
         )
         st.success("Your Plan:")

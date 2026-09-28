@@ -38,7 +38,7 @@ if client:
             try:
                 # First try with 3.8 model as per your error message
                 response = client.models.generate_content(
-                    model="gemini-2.5-flash",
+                    model="gemini-3.8-flash",
                     contents=prompt
                 )
                 st.success("Your Plan is Ready!")

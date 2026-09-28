@@ -5,7 +5,6 @@ st.set_page_config(page_title="FitBuddy AI", page_icon="💪")
 st.title("FitBuddy - AI Fitness Coach")
 st.write("Personal AI Diet and Workout Planner")
 
-# Get API Key
 try:
     api_key = st.secrets["GEMINI_API_KEY"]
 except:
@@ -13,7 +12,7 @@ except:
 
 if api_key:
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.0-flash")
+    model = genai.GenerativeModel("gemini-2.5-flash")
 
     st.subheader("Enter Your Details")
     col1, col2 = st.columns(2)
@@ -29,25 +28,13 @@ if api_key:
     level = st.selectbox("Activity Level", ["Beginner", "Intermediate", "Advanced"])
 
     if st.button("Generate My Plan"):
-        with st.spinner("Generating your plan..."):
+        with st.spinner("Generating..."):
             try:
-                prompt = f"""
-                Act as an Indian fitness coach.
-                User: {age} years old {gender}, {weight}kg, {height}cm, Goal is {goal}, 
-                Food Type is {food}, Fitness Level is {level}.
-                Provide:
-                1. A 7-Day Indian {food} Diet Plan in a table format with calories
-                2. A 7-Day Home Workout Plan
-                3. 3 Health Tips
-                Keep it simple and easy to follow.
-                """
+                prompt = f"Act as Indian fitness coach. User: {age}yrs {gender}, {weight}kg, {height}cm, Goal {goal}, Food {food}, Level {level}. Give 7-Day Indian {food} Diet Plan table + 7-Day Workout + 3 Tips. Simple English."
                 response = model.generate_content(prompt)
                 st.success("Your Plan is Ready!")
                 st.markdown(response.text)
             except Exception as e:
-                st.error(f"Error occurred: {e}")
+                st.error(f"Error: {e}")
 else:
-    st.warning("Please enter API Key to continue. Get it from aistudio.google.com/app/apikey")
-
-st.markdown("---")
-st.caption("Made for FitBuddy Project")
+    st.warning("Please enter API Key")

@@ -11,7 +11,6 @@ if not api_key:
 
 client = genai.Client(api_key=api_key)
 
-st.subheader("Enter Your Details")
 age = st.number_input("Age", 15, 80, 20)
 weight = st.number_input("Weight (kg)", 30, 150, 60)
 height = st.number_input("Height (cm)", 100, 220, 165)
@@ -22,12 +21,9 @@ food = st.selectbox("Food Preference", ["Veg", "Non-Veg", "Veg + Egg"])
 if st.button("Generate My Plan"):
     with st.spinner("Generating..."):
         prompt = f"Create Indian diet and workout plan for {age} year old {gender}, {weight}kg, {height}cm, goal {goal}, food {food}"
-        try:
-            response = client.models.generate_content(
-                model="gemini-2.5-flash",
-                contents=prompt
-            )
-            st.success("Your Plan:")
-            st.markdown(response.text)
-        except Exception as e:
-            st.error(f"Error: {e}")
+        response = client.models.generate_content(
+            model="gemini-3.8-flash",
+            contents=prompt
+        )
+        st.success("Your Plan:")
+        st.markdown(response.text)

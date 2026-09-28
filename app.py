@@ -22,7 +22,7 @@ food = st.selectbox("Food", ["Veg", "Non-Veg", "Veg + Egg"])
 if st.button("Generate My Plan"):
     with st.spinner("Generating..."):
         try:
-            model = genai.GenerativeModel("gemini-3.5-flash")
+            model = genai.GenerativeModel("gemini-3.8-flash")
             prompt = f"Create Indian diet and workout plan for {age}yr old {gender}, {weight}kg, {height}cm, goal {goal}, food {food}. Give simple points."
             response = model.generate_content(prompt)
             st.success("Your Plan Ready!")
